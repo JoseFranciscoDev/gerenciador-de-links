@@ -27,13 +27,16 @@ def create_user(request: HttpRequest):
 
 def login_view(request: HttpRequest):
     if request.method == "POST":
+        if not request.POST.get("username") or not request.POST.get("password"):
+            messages.error(request, "Faltou o usuário ou a senha")  
         user: User = authenticate(
             username=request.POST.get("username"),
             password=request.POST.get("password"),
         )
-        if user and user.is_active:
-            login(request, user)
-            messages.success(request, f"Usuario logado com sucesso: {user}")
-        else:
-            messages.error(request, "Sua conta foi desabilitada")
+        if user:
+            if user.is_active:
+                login(request, user)
+                messages.success(request, f"Usuario logado com sucesso: {user}")
+            else:
+                messages.error(request, f"Sua conta foi desabilitada: {user}")
     return redirect("home")

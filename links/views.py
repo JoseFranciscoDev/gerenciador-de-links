@@ -12,10 +12,14 @@ def home(request: HttpRequest):
         links = Link.objects.filter(user=user)[:10]
     else:
         links = None
+        user = None
     return render(
         request,
         "home.html",
-        {"links": links},
+        {
+            "links": links,
+            "user": user,
+        },
     )
 
 

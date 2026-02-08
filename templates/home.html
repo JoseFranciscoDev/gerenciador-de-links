@@ -15,9 +15,11 @@
     <div class="container">
       <div class="surface">
         <h1>Seu gerenciador de links</h1>
+        {% if user %}
         <h2>
-        Usuario: {{user}}
+        Usuário: {{user}}
         </h2>
+        {% endif %}
         <h3>Guarde seus links e tenha todos em um só lugar</h3>
         <a href="{% url 'criar_link' %}">Criar novo link</a>
         <br>
