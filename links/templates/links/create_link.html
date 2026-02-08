@@ -1,0 +1,31 @@
+{% load static %}
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Seus links</title>
+    <link rel="stylesheet" href="{% static 'links/create_link.css' %}" />
+  </head>
+
+  <body>
+    <div class="container">
+      <form class="surface form" action="{% url 'criar_link' %}" method="post">
+        {% csrf_token %}
+        <h1>Guardar link</h1>
+        <input type="text" name="titulo" placeholder="Título" />
+        <input type="text" name="url" placeholder="Link" />
+        <button type="submit">Guardar</button>
+        <a href="{% url 'home' %}" class="danger-action">Cancelar</a>
+      </form>
+
+      {% if messages %}
+      <div class="surface">
+        {% for message in messages %}
+        <p class="message">{{ message }''}</p>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>

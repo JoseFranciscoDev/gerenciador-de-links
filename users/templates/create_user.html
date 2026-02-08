@@ -1,0 +1,27 @@
+{% load static %}
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Criar novo usuario</title>
+    <link rel="stylesheet" href="{% static 'links/create_link.css' %}" />
+  </head>
+
+  <body>
+    <div class="container">
+      <form class="surface form" action="{% url 'create_user' %}" method="post">
+        {% csrf_token %} 
+        {% comment %}
+        <h1>Criar usuário</h1>
+        <input type="text" name="username" placeholder="Nome de usuário" />
+        <input type="password" name="password" placeholder="Sua senha" />
+        {% endcomment %} 
+        {{form}}
+        <button type="submit">Criar</button>
+        <a href="{% url 'home' %}" class="danger-action">Cancelar</a>
+        <p>{{user}}</p>
+      </form>
+    </div>
+  </body>
+</html>
