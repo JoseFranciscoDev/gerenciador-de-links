@@ -41,7 +41,6 @@
 * {
   box-sizing: border-box;
 }
-
 body {
   margin: 0;
   min-height: 100vh;
@@ -79,6 +78,12 @@ a:hover {
   display: flex;
   gap: var(--space-8);
   align-items: flex-start;
+}
+
+@media (max-width: 768px) {
+  .container-pai {
+    flex-direction: column;
+  }
 }
 
 .surface {
